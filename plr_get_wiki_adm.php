@@ -62,30 +62,72 @@ function plrWiki_meta_box_echo()
             
         ?>
 
-        <section id="plrWiki-summary-loader">
-            <p><strong>Summary fields. The snippet will be formatted in parts shown below</strong></p>
-        <p>
-            <input  class="widefat" 
-                id="plrWiki-summary-title" name="plrWiki-summary-title" type="text" value="<?php echo $_plrWikiSummaryTitle; ?>" /> 
+<article id="plrWiki-summary-loader">
 
-            <textarea class="widefat" 
-                id="plrWiki-summary" name="plrWiki-summary" type="text" rows="5"><?php echo $_plrWikiSummary; ?></textarea>
+<section id="header-main">
+<h1><a href=".">TRENDs Research</a></h1>
+<button id="menu-hide-btn" class="btn" type="button"></button>
+</section>
 
-            <input  class="widefat" 
-                id="plrWiki-summary-url" name="plrWiki-summary-url" type="text" value="<?php echo $_plrWikiSummaryUrl; ?>" />             
+<section id="plrWiki-snippet">
+<label>Pola wybranego fragmentu: tytuł, cytat, link</label>
+<input  class="widefat" 
+    id="plrWiki-summary-title" name="plrWiki-summary-title" type="text" value="<?php echo $_plrWikiSummaryTitle; ?>" /> 
 
-            <label for="plrWiki-query-term" >Fetch and select summary suggestion to store</label> 
-                <div style="display:flex;flex-direction:row;width:100%;cursor:pointer">
-                    <input style="font-weight:bold;color:green" class="widefat" 
-                        id="plrWiki-query-term" name="plrWiki-query-term" type="text" value="<?php //echo $_plrWikiQueryTerm; ?>"  placeholder="Search Phrase" /> 
+<textarea class="widefat" 
+    id="plrWiki-summary" name="plrWiki-summary" type="text" rows="4"><?php echo $_plrWikiSummary; ?></textarea>
 
-                        &nbsp;<input type="button" value="Fetch Wikipedia" id="plrWiki-fetch-summary" class="button">
-                </div>
-        </p>
+<input  class="widefat" 
+    id="plrWiki-summary-url" name="plrWiki-summary-url" type="text" value="<?php echo $_plrWikiSummaryUrl; ?>" />             
 
-        <div class="plrWiki-payload">Waiting...
-        </div>
-        </section>
+</section>    
+
+<section >
+<label for="plrWiki-query-term" >Szukaj i wybierz fragment klikając tytuł</label> 
+
+<div id="plrWiki-queryask-area" >
+    <input id="plrWiki-query-term" name="plrWiki-query-term" type="text" 
+        value="<?php //echo $_plrWikiQueryTerm; ?>"  placeholder="?"  autofocus  /> 
+
+    <select id="plrWiki-lang-select">
+    <option value="pl">PL</option>
+    <option value="en" selected>EN</option>
+    </select>
+
+        &nbsp;<input type="button" value="Szukaj" id="plrWiki-fetch-summary" class="button">
+
+
+</div>
+</section>
+
+<section id="plrWiki-switches" title="Przeszukaj kolejny serwis">
+
+<button value="wikipedia.org" id="plrWiki-switch-pedia" class="button btn-num-1">WIKIPEDIA</button>
+    <button value="commons.wikimedia.org" id="plrWiki-switch-media" class="button btn-num-2">MEDIA</button>
+            <button value="wikibooks.org" id="plrWiki-switch-books" class="button btn-num-3">BOOKS</button>
+                <button value="wikinews.org" id="plrWiki-switch-news" class="button btn-num-4">NEWS</button>
+                        <button value="wikiquote.org" id="plrWiki-switch-quote" class="button btn-num-5">QUOTES</button>
+                            <button value="wikisource.org" id="plrWiki-switch-source" class="button btn-num-6">SOURCES</button>
+                                
+                                <button value="wiktionary.org" id="plrWiki-switch-wiktionary" class="button btn-num-7">DICTIONARY</button>
+                            <button value="wikivoyage.org" id="plrWiki-switch-wikivoyage" class="button btn-num-8">VOYAGE</button>                                            
+                        <button value="wikiversity.org" id="plrWiki-switch-wikiversity" class="button btn-num-9">UNIVERSITY</button>                                    
+                                
+
+
+
+</section>
+
+
+
+
+<section>
+<div class="plrWiki-payload">Czekam...</div>
+</section>
+
+</article>
+
+    
     
         <?php    
 

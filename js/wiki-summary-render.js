@@ -28,13 +28,52 @@ window.onload = function () {
     
 
 
+    "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&generator=search&prop=info|extracts&inprop=url&exintro&explaintext&exsentences=2&gsrsearch=";
+
+    
+
+    
+
+    // Main configuration object
+
+    let configVal = { 
+        lang: 'en', 
+        webservice:'wikipedia.org',
+        queryURL: 'w/api.php?origin=*&format=json&action=query&generator=search&prop=info|extracts&inprop=url&exintro&explaintext&exsentences=2&gsrsearch='
+        ,configUpdate:
+            () => {
+
+            let lng = configVal.lang + '.';
+            let websrv = configVal.webservice; 
+    
+            // Some WIKIPEDIA services have www. - then they not use en.
+            if ((websrv.includes('www',0)===true) || (websrv.includes('commons',0)===true))
+                lng = '';
+    
+            // BUILD the API URL
+            wiki_api_base = `https://${lng}${configVal.webservice}/${configVal.queryURL}`;
+    
+            // console.log(wiki_api_base);
+        
+        }
+
+    };
+
+  
+
+
+    configVal.configUpdate();
+
+
     let payload = document.querySelector('#plrWiki-summary-loader .plrWiki-payload');
     let queryTerm = document.querySelector('#plrWiki-query-term').value;
 
 
-    payload.innerText = "Ready to work";
+    payload.innerText = "Gotów...\nHaseł na stronie: 10";
 
     let btnFetch = document.querySelector('#plrWiki-fetch-summary');
+    let btnLangSelect = document.querySelector('#plrWiki-lang-select');
+
 
     let wikiJSON;
 
@@ -63,13 +102,20 @@ window.onload = function () {
 
 
         JSONitemsCount = Object.keys( wikiJSON_2 ).length ;
+        
         console.log(JSONitemsCount);
+
+        if (JSONitemsCount <= 1) {
+            payload.innerText = "Nothing found";    
+            return false;
+        }
 
         let wikiJSON = {};
         wikiJSON = wikiJSON_2.query.pages;
 
 
-        console.log(wikiJSON);
+        // DISPLAY loaded JSON /test    
+        // console.log(wikiJSON);
 
 
         dataItems.length = 0;
@@ -82,7 +128,6 @@ window.onload = function () {
         
         console.log( JSONitemsCount);
         itemsCount = JSONitemsCount;
-        
 
 
         if (itemsCount == 0) {
@@ -105,7 +150,8 @@ window.onload = function () {
         for (var pageId in wikiJSON) {
             // string1 += object1[property1];
                  
-            console.log(pageId + " " + wikiJSON[pageId].title);
+            // display titles test
+            // console.log(pageId + " " + wikiJSON[pageId].title);
 
                 dataSet = new Object();
                 // dataSet = { title:wikiJSON[j][0].title, summary:wikiJSON[j][0].extract, url:wikiJSON[j][0].pageid }
@@ -120,7 +166,8 @@ window.onload = function () {
         let dataItems2 = dataItems.reverse();
         dataItems = dataItems2;
 
-        console.log(dataItems);        
+        // display object test
+        // console.log(dataItems);        
 
 
 
@@ -205,9 +252,11 @@ window.onload = function () {
     
     const fetchSummaries = () => {
 
+        configVal.configUpdate();
         queryTerm = document.querySelector('#plrWiki-query-term').value;
-
         payload.innerText = "Fetching...";    
+
+        console.log(wiki_api_base + queryTerm);
 
         fetch(wiki_api_base + queryTerm,
             {
@@ -376,8 +425,45 @@ window.onload = function () {
 
 
 
+
+
+
+    // Live Configuration
+    // configVal = { lang: 'en', webservice:'wikipedia'}; // default
+  
+    const langSelect = () => {
+
+        langSelected = document.querySelector('#plrWiki-lang-select').value; 
+        //console.log(langSelected);
+        
+        switch (langSelected) {
+            case 'en':
+            configVal.lang = langSelected;
+                break;
+            case 'pl':
+            configVal.lang = langSelected;
+                break;                
+        
+            default:
+            configVal.lang = 'en';
+                break;
+        }
+
+        //console.log(configVal.lang);
+
+        configVal.configUpdate();
+    
+    }
+
+    btnLangSelect.addEventListener('change', langSelect, false);
+    
+
+
+
+
+
     // ADMIN 
-    // select from payload <a> title,
+    // select from payload <a> [title],
     // and push to the post Summary submit area
 
     (function () {
@@ -385,7 +471,7 @@ window.onload = function () {
         resources.addEventListener('click', handler, false);
 
         function handler(e) {
-            var x = e.target; // get the link tha
+            var x = e.target; // get the clicked element
             // console.log('Event delegation:' + x);
             if (x.nodeName.toLowerCase() === 'div') {
                 // alert('Event delegation:' + x);
@@ -406,6 +492,59 @@ window.onload = function () {
                 url.value = dataItems[summaryNum].url;
 
                 // console.log(summary.value); 
+
+                
+            }
+        };
+    })();
+
+
+
+
+
+
+    // ADMIN 
+    // select CONFIG [WEBSERVICE] BUTTONs
+
+    (function () {
+        var resources = document.querySelector('#plrWiki-switches');
+        resources.addEventListener('click', handler, false);
+
+        function handler(e) {
+            var x = e.target; // get the clicked element
+            // console.log('Event delegation:' + x);
+            
+            if (x.nodeName.toLowerCase() === 'button') {
+                // alert('Event delegation:' + x);
+                // console.log('Event delegation:' + x);
+                
+                e.preventDefault();
+
+                let buttonNum = /btn-num-(\d+)/.exec(x.className)[1];
+
+               // console.log('Event delegation: ' + x.className + " pos= " + buttonNum); 
+               // console.log(x.value); 
+
+               configVal.webservice = x.value;
+
+               resources = document.querySelectorAll('#plrWiki-switches button');
+
+               
+               // https://gomakethings.com/es6-foreach-loops-with-vanilla-javascript/
+               resources.forEach(
+                   function(x, index)   {
+                      x.classList.remove ('plrWiki-display-active');
+                      //console.log(x);
+                   }
+               );
+               
+
+               x.classList.add('plrWiki-display-active');
+
+               configVal.configUpdate();
+               fetchSummaries();
+
+
 
                 
             }

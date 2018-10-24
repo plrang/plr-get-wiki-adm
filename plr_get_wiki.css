@@ -2,6 +2,30 @@
 /* Plrang Art 2018 */ 
 
 
+/* Variables 
+for customizing styles in
+different sites
+WP or standalone site fe.
+*/
+
+/* Config file for: WORDPRESS */
+
+:root {
+    --main-bg-color: #eee;
+    --main-font-size: 14pt;
+    --main-webfont: 'Barlow Semi Condensed', sans-serif;font-weight: 400 !important;
+    --main-link-color: #28a010;
+    --neutral-link-color: #bbb !important; /* ie. header */
+    --red-point-color: #ff4141;
+    
+    --main-panel-width: initial;
+    --main-button-font-size: 14pt;  
+    --main-button-padding: initial;  
+    
+ 
+}
+
+
 
 /* PUBLIC POST */
 
@@ -29,61 +53,137 @@ padding:.6rem 0;
 }
 
 
+
+/* ADMIN / Wordpress styles part */
+
+
 #plrWiki-summary-loader input,
-#plrWiki-summary-loader textarea {
+#plrWiki-summary-loader textarea 
+{
     display:block;
-    width:100%;
-    padding:.6rem 1rem;
+    padding:.6rem;
     border:none;
-    background-color:#eee;
+    background:#ffffffaa;
     border-radius: 4px;
     border:0;
+    margin:0;
     margin-bottom:.6rem;
-    border:1px solid #ddddddff;
+    margin-top:.2rem;
+    border:1px solid #dddfdfff;
+    
+}
+
+
+#plrWiki-summary-loader input
+{
+    font-size:var(--main-button-font-size);
 }
 
 
 
-/* STANDALONE WEBSITE BODY */
 
+#header-main 
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+        
+}
 
-#plrWiki-summary-loader * {
-    color:#777;
+#menu-hide-btn
+{
+   
+    padding:.2rem;
+    
+    border-radius: 4px;
+    border:1px solid #dddfdfff;
     font-size:12pt;
- 
+    width:2rem;
+    height:2rem;
+    margin:.5rem;
+    cursor: pointer;
+    
 }
 
-#plrWiki-summary-loader a {
-    color:#6fbcd5;
+#plrWiki-summary-loader {position: relative}
+
+#plrWiki-snippet 
+{
+
 }
-#plrWiki-summary-loader a:hover{color:#168}
+
+
+#plrWiki-snippet input
+, #plrWiki-snippet textarea 
+{
+    width:100%;
+}
+    
+
+
+#plrWiki-summary-loader select{
+    
+    display:block;
+    width:auto;
+    height:auto;
+    padding:.6rem .2rem;
+    
+    background:#ffffffaa;
+    border-radius: 4px;
+    margin:.2rem 0 .6rem .2rem;
+    border:1px solid #dddfdfff;
+    font-size:12pt;
+    
+}
+
+
+#plrWiki-summary-loader select#plrWiki-lang-select {
+    
+    cursor:pointer;
+    flex-shrink: 0;
+}
+
 
 
 #plrWiki-summary-loader #main {
     display:flex;
-    max-width:800px;
-    min-width: 360px;
-   
+    max-width:var(--main-panel-width);
+    
+
+    
     margin:auto;
     
     min-height:100vh;
     margin-top:0;
     padding:1rem;
     background:
-        linear-gradient(#e4e4e4, transparent),
-        linear-gradient(to top left, #a1e3d0, transparent),
+        linear-gradient(#d8e8f0, transparent),
+        linear-gradient(to top left, #a1d3e0, transparent),
         linear-gradient(to top right, #ffe1e1, transparent);
 }
 
 
 
-/* ADMIN AREA */
+
+
+
+
+
+
+
+
+#plrWiki-queryask-area {
+    display: flex;
+    flex-direction: row;
+    
+    justify-content: space-between;
+}
 
 
 #plrWiki-query-term::placeholder{
-    color:#f66;
+    color:#e44;
     font-weight:normal;
-    opacity: 1;
+  
     
   }
 
@@ -91,7 +191,6 @@ padding:.6rem 0;
 #plrWiki-query-term:hover::placeholder{
     
    color:white;
-   opacity: 0;
     
     
 }
@@ -100,19 +199,27 @@ padding:.6rem 0;
 
   #plrWiki-query-term {
     
-    color:#00b1bf !important;
+    color:#00b1bf;
     caret-color: red;
     text-align: center;
     background:white;      
-      
        
   animation-name:doBlink;
     animation-duration: 3s;
     animation-iteration-count: infinite;
     transition: all .5s ease-in-out;   
 
-      border:1px dashed red;
+      border:1px solid #dddfdfff;
+      
+      min-width:auto;
+      width:60%;  
+      flex-basis: auto;
+      
+      
   }
+
+
+
 
 
 
@@ -122,6 +229,15 @@ padding:.6rem 0;
     100%{ opacity:.7 ;    }
 }
   
+
+
+#plrWiki-fetch-summary
+, #plrWiki-query-term {
+    
+    font-size:x-large;
+    
+}
+
 
 
 
@@ -136,10 +252,17 @@ padding:.6rem 0;
 }
 
 
+.plrWiki-display-active {
+    background-color:red;
+    color:white;
+}
+
+
+
 #plrWiki-summary-loader {
     margin:auto;
     margin-top:0;
-     width:800px;
+     width:var(--main-panel-width);
     
 }
 
@@ -149,9 +272,10 @@ padding:.6rem 0;
 }
 
 #plrWiki-summary-loader label {
-    font-weight:bold;
+    
     display:block;
-    margin:1rem  0 0 0;
+    margin:0  0 .7rem 0;
+    font-size:smaller;
     
 }
 
@@ -165,17 +289,21 @@ padding:.6rem 0;
 
 #plrWiki-fetch-summary {
     
-    width:40%;
-    background:#ff8c66 !important;
+    background-color:#ff8c66 !important;
     cursor:pointer;
-    color:#f8f8f8 !important;
-    font-weight:normal ;
-    height:3rem;
+    color:#f8f8f8;
+    font-weight:normal;
+    
+    min-width:auto;
+    width:40%;  
+    height:auto;
+    flex-basis: auto;    
+    
 }
 
 
 #plrWiki-fetch-summary:hover {
-    background:#ffac96;
+    background-color:#ffac96 !important;
     color:white;
     border:1px solid #e98;
 }
@@ -183,14 +311,17 @@ padding:.6rem 0;
 
 .plrWiki-payload {
     box-sizing: border-box;
-    border:1px dotted #ccc;
     padding:1rem;
     scroll-behavior: smooth;
     overflow-y: scroll;
-    height:400px;
-
-    background:#eee;
-    
+    height:1000px;
+    overflow-wrap: break-word;
+    word-wrap:wrap;
+    hyphens: auto;
+    word-break: break-word;
+    overflow:scroll;
+    min-width:300px;
+    max-width:100vw;
 }
 
 .plrWiki-payload ul {
@@ -203,6 +334,9 @@ padding:.6rem 0;
     margin-bottom:2rem;
     overflow-wrap: break-word;
     word-wrap:wrap;
+    hyphens: auto;
+    word-break: break-word;
+    
 }
 
 
@@ -226,7 +360,7 @@ padding:.6rem 0;
 
 #plrWiki-summary-loader
 .plrwiki-item-title::after {
-    content:'Click the summary title to store';
+    content:'Kliknij tytuł by wybrać ten opis';
     display:none;
     width:auto;
     position:absolute;
@@ -261,6 +395,7 @@ padding:.6rem 0;
 .plrwiki-item-summary {
     margin-bottom:.2rem;
     display: block;
+    font-size:1rem;
 }
 
 
@@ -274,3 +409,40 @@ padding:.6rem 0;
 
 
 
+
+#plrWiki-switches 
+{
+    display:flex;
+    flex-direction: row;      
+     flex-wrap: wrap; 
+    
+    justify-content:space-evenly;
+    
+}
+
+
+
+
+#plrWiki-switches button
+{
+    
+    font-size:smaller;
+    cursor: pointer;
+    opacity:.5;
+    padding:var(--main-button-padding);
+    border-radius: 3px;
+    margin:auto;
+    margin-bottom:.3rem;
+    flex-basis: 4.5rem;
+    
+    border:1px solid #fff;
+    color:#222;
+   
+}
+
+#plrWiki-switches button:hover
+{
+    opacity:1;
+}
+
+/* NO MEDIA clauses FOR WORDPRESS */

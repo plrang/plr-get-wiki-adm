@@ -1,0 +1,276 @@
+/* Get Wiki - Get This Wikipedia Summary */
+/* Plrang Art 2018 */ 
+
+
+
+/* PUBLIC POST */
+
+#plr-wiki-area-js {
+    margin:auto;
+}
+
+
+#plr-wiki-area-js .plrwiki-item-title {
+    font-weight:normal;
+}
+
+#plr-wiki-area-js .plrwiki-item-summary {
+display:block;
+}
+
+#plr-wiki-area-js .plrwiki-item-url {
+    font-style: italic;
+    font-size:smaller;
+}
+
+p{
+padding:.6rem 0;
+  
+}
+
+
+#plrWiki-summary-loader input,
+#plrWiki-summary-loader textarea {
+    display:block;
+    width:100%;
+    padding:.6rem 1rem;
+    border:none;
+    background-color:#eee;
+    border-radius: 4px;
+    border:0;
+    margin-bottom:.6rem;
+    border:1px solid #ddddddff;
+}
+
+
+
+/* STANDALONE WEBSITE BODY */
+
+
+#plrWiki-summary-loader * {
+    color:#777;
+    font-size:12pt;
+ 
+}
+
+#plrWiki-summary-loader a {
+    color:#6fbcd5;
+}
+#plrWiki-summary-loader a:hover{color:#168}
+
+
+#plrWiki-summary-loader #main {
+    display:flex;
+    max-width:800px;
+    min-width: 360px;
+   
+    margin:auto;
+    
+    min-height:100vh;
+    margin-top:0;
+    padding:1rem;
+    background:
+        linear-gradient(#e4e4e4, transparent),
+        linear-gradient(to top left, #a1e3d0, transparent),
+        linear-gradient(to top right, #ffe1e1, transparent);
+}
+
+
+
+/* ADMIN AREA */
+
+
+#plrWiki-query-term::placeholder{
+    color:#f66;
+    font-weight:normal;
+    opacity: 1;
+    
+  }
+
+
+#plrWiki-query-term:hover::placeholder{
+    
+   color:white;
+   opacity: 0;
+    
+    
+}
+
+
+
+  #plrWiki-query-term {
+    
+    color:#00b1bf !important;
+    caret-color: red;
+    text-align: center;
+    background:white;      
+      
+       
+  animation-name:doBlink;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transition: all .5s ease-in-out;   
+
+      border:1px dashed red;
+  }
+
+
+
+@keyframes doBlink {
+    0%{ opacity:.7 ; }
+    50%{ opacity:1 ;    }
+    100%{ opacity:.7 ;    }
+}
+  
+
+
+
+
+.plrWiki-err {
+    background-color:red;
+    color:white;
+    padding:.3rem;
+    border-radius:2px;
+    font-weight: bold;
+
+}
+
+
+#plrWiki-summary-loader {
+    margin:auto;
+    margin-top:0;
+     width:800px;
+    
+}
+
+
+#plrWiki-summary-loader input {
+
+}
+
+#plrWiki-summary-loader label {
+    font-weight:bold;
+    display:block;
+    margin:1rem  0 0 0;
+    
+}
+
+
+#plrWiki-summary-loader p {
+    margin-top:0;
+    margin-bottom:.3rem;
+}
+
+
+
+#plrWiki-fetch-summary {
+    
+    width:40%;
+    background:#ff8c66 !important;
+    cursor:pointer;
+    color:#f8f8f8 !important;
+    font-weight:normal ;
+    height:3rem;
+}
+
+
+#plrWiki-fetch-summary:hover {
+    background:#ffac96;
+    color:white;
+    border:1px solid #e98;
+}
+
+
+.plrWiki-payload {
+    box-sizing: border-box;
+    border:1px dotted #ccc;
+    padding:1rem;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height:400px;
+
+    background:#eee;
+    
+}
+
+.plrWiki-payload ul {
+    list-style-type: none;
+    margin:.6rem 0 0 0;
+}
+
+.plrWiki-payload  li {
+    list-style-type: none;
+    margin-bottom:2rem;
+    overflow-wrap: break-word;
+    word-wrap:wrap;
+}
+
+
+
+#plrWiki-summary-loader
+.plrwiki-item-title {
+    font-weight:bold;
+    margin-bottom:.5rem;
+    cursor:pointer;
+    position: relative;
+    font-size:1.6rem;
+    z-index:2;
+    line-height:1.8rem;
+}
+
+#plrWiki-summary-loader
+.plrwiki-item-title:hover {
+    color:black;
+}
+
+
+#plrWiki-summary-loader
+.plrwiki-item-title::after {
+    content:'Click the summary title to store';
+    display:none;
+    width:auto;
+    position:absolute;
+    background:#18a;
+    opacity: .9;
+    top:20%;
+    right:0;
+/*  border-radius: 2px; */
+    color:#fff;
+    padding:5pt .5rem;
+    line-height: 7pt;
+/*  box-shadow: 0 0 4px 1px #66000033; */
+    font-size:10pt;
+    font-weight:normal;
+    margin:0;
+    
+    
+    
+}
+
+#plrWiki-summary-loader
+.plrWiki-payload li:hover 
+.plrwiki-item-title::after
+{
+    display:inline-block;
+    
+}
+
+
+
+#plrWiki-summary-loader
+.plrwiki-item-summary {
+    margin-bottom:.2rem;
+    display: block;
+}
+
+
+
+
+#plrWiki-summary-loader
+.plrwiki-item-url {
+    display:block;
+    font-size: smaller;
+}
+
+
+

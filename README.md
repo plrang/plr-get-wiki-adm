@@ -1,12 +1,10 @@
-Basic Wikipedia summary fetch for inserting in a post
+Wordpress Wikipedia API client plugin
 
-Sample shortcode
+Basic summary fetch for inserting it into a Wordpress post.
 
-<code>
-<pre>
-[getthisfeed cnt=4 url=https://imagerion.com/feed/?image-tags=mars sort=DESC theme=dark ]
-</pre>
-</code>
+Work in progress, early yet working stage. There are many leftovers from my other sources and the code is not optimized nor organized/formatted.
+There are many boilerplates left ready for further development. 
+Depending on the language the URLs supplied by Wikipedia may use a weird encoding.
+There is an user input required in that case. This is the one of many fixes needed so: 
 
-Except the URL parameters are optional. Same options are configurable in the widget itself.
-
+Use it at your own risk. No warranties of any kind.

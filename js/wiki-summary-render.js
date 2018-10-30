@@ -1,7 +1,12 @@
 
+// Fetch data from WIKIPEDIA to fill the list of SUMMARIES
+// Click the summary title to fill the snippet input fields
+// 
+// Snippet is gonna be added to the end of the post content
+// 
+// Depending on the language the URL supplied by Wikipedia may use a weird encoding
+// @FIXIT: At the moment there is user input required in that case
 
-
-// Fetch the data from WIKIPEDIA to fill the suggested list of SUMMARIES
 
 window.onload = function () {
 
@@ -12,26 +17,9 @@ window.onload = function () {
     // CORS resolving cross domain issue https://stackoverflow.com/questions/23952045/wikipedia-api-cross-origin-requests
     // &origin=* to wikipedia
 
-    wiki_api_base = "https://en.wikipedia.org/w/api.php?format=json&action=opensearch&origin=*&search=";
-    //wiki_api_base = "https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&prop=extracts&exchars=175&titles=";
-    //wiki_api_base = "https://commons.wikimedia.org/w/api.php?format=json&action=opensearch&origin=*&search=";
-    //wiki_api_base = "https://en.wikibooks.org/w/api.php?format=json&action=opensearch&origin=*&search=";
-    //wiki_api_base = "https://en.wikinews.org/w/api.php?format=json&action=opensearch&origin=*&search=";
-    
-
-    // WIKI API v2
-
-    //wiki_api_base = "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&list=search&srsearch=";
+    // WIKI API ENTRY
 
     wiki_api_base = "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&generator=search&prop=info|extracts&inprop=url&exintro&explaintext&exsentences=2&gsrsearch=";
-    //wiki_api_base = "https://en.wikinews.org/w/api.php?origin=*&format=json&action=query&generator=search&prop=info|extracts&inprop=url&exintro&explaintext&exsentences=2&gsrsearch=";
-    
-
-
-    "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&generator=search&prop=info|extracts&inprop=url&exintro&explaintext&exsentences=2&gsrsearch=";
-
-    
-
     
 
     // Main configuration object
@@ -69,14 +57,13 @@ window.onload = function () {
     let queryTerm = document.querySelector('#plrWiki-query-term').value;
 
 
-    payload.innerText = "Gotów...\nHaseł na stronie: 10";
+    payload.innerText = "Ready...\nResults displayed: 10";  // 10 is the default API... - can't remember right now, need to check
 
     let btnFetch = document.querySelector('#plrWiki-fetch-summary');
     let btnLangSelect = document.querySelector('#plrWiki-lang-select');
 
 
-    let wikiJSON;
-
+    // let wikiJSON;
 
     // 0 - query 
     // 1 - fount titles

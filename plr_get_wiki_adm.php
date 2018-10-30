@@ -2,8 +2,8 @@
 /*
 Plugin Name: Get Wiki - Get This Wikipedia Summary
 Plugin URI: https://plrang.com/projects/
-Description: Wordpress plugin helping to choose/add Wikipedia's article summary to the post. Using that weird W API
-Author: Plrang Art
+Description: Wordpress plugin allowing to fetch/choose/store Wikipedia's article summary into the post. Using that weird W API
+Author: Plrang
 Author URI: https://plrang.com/
 Version: 1.0.0
 License: GNU General Public License v2.0 or later
@@ -12,11 +12,16 @@ License URI: http://www.opensource.org/licenses/gpl-license.php
 
 /*
 Copyright 2018 Plrang Art (email : gws@plrang.com)
-It's just a working proof of concept, under continuous development
+It's just a working proof of concept, under a continuous development
 Using: https://codex.wordpress.org/Widgets_API
 
-TODO: CSS variables
-TODO: configurable CSS/theming in the WP widget (started)
+@TODO: CSS variables
+@TODO: configurable CSS/theming in the WP widget (started)
+@TODO: different language support
+@TODO: add clearing snippet fields - button
+@TODO: we don't use jQuery - need to check out some calls left in the code (related to the Wordpress not the plugin)
+@FIX: folding the snippet fields
+
 */
 
 /*
@@ -37,7 +42,7 @@ add_action( 'save_post', 'plrWiki_meta_box_save' );
 function plrWiki_meta_box_add()
 {
     $_screens = array( 'post', 'page', 'image' );
-    add_meta_box( 'plrWiki-area-id', 'PLR WIKI SUMMARY', 'plrWiki_meta_box_echo', $_screens, 'normal', 'high' );
+    add_meta_box( 'plrWiki-area-id', 'PLR GET WIKIPEDIA SUMMARY', 'plrWiki_meta_box_echo', $_screens, 'normal', 'high' );
     
 }
 
@@ -54,23 +59,23 @@ function plrWiki_meta_box_echo()
         $_meta = get_post_custom( $post->ID );
         
         // temporary test value
-        $_plrWikiQueryTerm = "Ponta do Sol"; 
+        // $_plrWikiQueryTerm = "Mars rocket"; 
         
-        $_plrWikiSummary = isset( $_meta['plrWiki-summary-opt'] ) ? esc_attr( $_meta['plrWiki-summary-opt'][0] ) : "Summary not found";  
-        $_plrWikiSummaryTitle = isset( $_meta['plrWiki-summary-title-opt'] ) ? esc_attr( $_meta['plrWiki-summary-title-opt'][0] ) : "Summary title not found";  
-        $_plrWikiSummaryUrl = isset( $_meta['plrWiki-summary-url-opt'] ) ? esc_attr( $_meta['plrWiki-summary-url-opt'][0] ) : "Summary URL not found";  
+        $_plrWikiSummary = isset( $_meta['plrWiki-summary-opt'] ) ? esc_attr( $_meta['plrWiki-summary-opt'][0] ) : "";      // set the input fields empty if the summary not yet in WP DB
+        $_plrWikiSummaryTitle = isset( $_meta['plrWiki-summary-title-opt'] ) ? esc_attr( $_meta['plrWiki-summary-title-opt'][0] ) : "";  
+        $_plrWikiSummaryUrl = isset( $_meta['plrWiki-summary-url-opt'] ) ? esc_attr( $_meta['plrWiki-summary-url-opt'][0] ) : "";  
             
         ?>
 
 <article id="plrWiki-summary-loader">
 
 <section id="header-main">
-<h1><a href=".">TRENDs Research</a></h1>
+<h1>Snippet</h1>
 <button id="menu-hide-btn" class="btn" type="button"></button>
 </section>
 
 <section id="plrWiki-snippet">
-<label>Pola wybranego fragmentu: tytuł, cytat, link</label>
+<label>Selected snippet fields: title, summary, URL</label>
 <input  class="widefat" 
     id="plrWiki-summary-title" name="plrWiki-summary-title" type="text" value="<?php echo $_plrWikiSummaryTitle; ?>" /> 
 
@@ -83,7 +88,7 @@ function plrWiki_meta_box_echo()
 </section>    
 
 <section >
-<label for="plrWiki-query-term" >Szukaj i wybierz fragment klikając tytuł</label> 
+<label for="plrWiki-query-term" >Search and choose by clicking the summary title</label> 
 
 <div id="plrWiki-queryask-area" >
     <input id="plrWiki-query-term" name="plrWiki-query-term" type="text" 
@@ -94,13 +99,13 @@ function plrWiki_meta_box_echo()
     <option value="en" selected>EN</option>
     </select>
 
-        &nbsp;<input type="button" value="Szukaj" id="plrWiki-fetch-summary" class="button">
+        &nbsp;<input type="button" value="Search" id="plrWiki-fetch-summary" class="button">
 
 
 </div>
 </section>
 
-<section id="plrWiki-switches" title="Przeszukaj kolejny serwis">
+<section id="plrWiki-switches" title="Search this web service">
 
 <button value="wikipedia.org" id="plrWiki-switch-pedia" class="button btn-num-1">WIKIPEDIA</button>
     <button value="commons.wikimedia.org" id="plrWiki-switch-media" class="button btn-num-2">MEDIA</button>
@@ -122,7 +127,7 @@ function plrWiki_meta_box_echo()
 
 
 <section>
-<div class="plrWiki-payload">Czekam...</div>
+<div class="plrWiki-payload">Waiting...</div>
 </section>
 
 </article>
@@ -175,14 +180,16 @@ function plrWiki_meta_box_save( $post_id )
 
 function load_custom_wp_admin_style($hook) {
     
-    // load admin CSS only on the post page - maybe changed in the future
+    // load admin CSS only on the post page 
+    // may be changed in the future
+    
     if('post.php' != $hook ) {
             return;
     }
     wp_enqueue_style( 'custom_wp_admin_css', plugins_url('plr_get_wiki.css', __FILE__) );
 }
-add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
+add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
 
 // POST content: plugin style-file
@@ -195,18 +202,11 @@ function plr_get_wiki_CSS() {
 add_action( 'wp_enqueue_scripts', 'plr_get_wiki_CSS' );
 
 
-
 //add_filter( 'wp_feed_cache_transient_lifetime', create_function( '$a', 'return 36000;' ) );
 
 
 
-
-
-
 add_filter('the_content','plrWiki_displaySummary');
-
-
-
 
 function plrWiki_displaySummary($the_content) {
 
@@ -226,9 +226,6 @@ function plrWiki_displaySummary($the_content) {
         $summaryURLKey = 'plrWiki-summary-url-opt';
         $summaryURL = get_post_meta($postID, $summaryURLKey, true);
         $summaryURL = '<a href="' .$summaryURL. '" target="_blank" rel="noopener">' .$summaryURL. "</a>";
-
-        
-        
         
          
         // if( !user_can( wp_get_current_user() , 'manage_options'))
@@ -245,10 +242,7 @@ function plrWiki_displaySummary($the_content) {
             }
 
         // }   
-            
-
-
-        
+       
         }
 
     
@@ -273,7 +267,6 @@ if ( !class_exists( 'PLR_get_wiki' ))
             //  add_action( 'template_redirect', array( &$this, 'get_thumbs' ) );
         }
 
-
 } // class
 
 
@@ -287,8 +280,9 @@ $_plrWiki = new PLR_get_wiki();
 
 
 
-
 // Add an active shortcode inside the post or a widget
+// NOT YET TESTED - boilerplate leftover
+
 add_action( 'init', 'plrWiki_reg_shortcode');
 
 function plrWiki_reg_shortcode(){

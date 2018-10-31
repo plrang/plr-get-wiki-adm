@@ -20,7 +20,7 @@ Using: https://codex.wordpress.org/Widgets_API
 @TODO: different language support
 @TODO: add clearing snippet fields - button
 @TODO: we don't use jQuery - need to check out some calls left in the code (related to the Wordpress not the plugin)
-@TODO: check if the snippet is already used
+@TODO: check/display if the snippet is already used in another post
 */
 
 /*

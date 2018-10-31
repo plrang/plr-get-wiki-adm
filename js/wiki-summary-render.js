@@ -74,7 +74,6 @@ window.onload = function () {
 
 
 
-
     // FILL PAYLOAD for WIKI API 2
 
     const fillPayloadArea = (wikiJSON_2) => {
@@ -129,25 +128,18 @@ window.onload = function () {
         }
     
 
-        //for (var j = 0; j < itemsCount; j++) {
-
-
-
-
         for (var pageId in wikiJSON) {
             // string1 += object1[property1];
                  
             // display titles test
             // console.log(pageId + " " + wikiJSON[pageId].title);
 
-                dataSet = new Object();
-                // dataSet = { title:wikiJSON[j][0].title, summary:wikiJSON[j][0].extract, url:wikiJSON[j][0].pageid }
-                dataSet = { title:wikiJSON[pageId].title, summary:wikiJSON[pageId].extract, url:wikiJSON[pageId].fullurl }
-                dataItems.push(dataSet);
+            dataSet = new Object();
+            // dataSet = { title:wikiJSON[j][0].title, summary:wikiJSON[j][0].extract, url:wikiJSON[j][0].pageid }
+            dataSet = { title:wikiJSON[pageId].title, summary:wikiJSON[pageId].extract, url:wikiJSON[pageId].fullurl }
+            dataItems.push(dataSet);
 
-                }
-        
-                
+            }
                         
 
         let dataItems2 = dataItems.reverse();
@@ -155,8 +147,6 @@ window.onload = function () {
 
         // display object test
         // console.log(dataItems);        
-
-
 
         let el_span;
         let fragment;
@@ -184,7 +174,6 @@ window.onload = function () {
             el_disp_url.className = "plrwiki-item-url";
 
 
-
             el_disp_title.innerText = dataItems[i].title;
 
             // clean up data strings from the unnecessary parts
@@ -209,9 +198,6 @@ window.onload = function () {
             el_disp_url.setAttribute('href', dataItems[i].url);
             el_disp_url.setAttribute('target', '_blank');
             
-
-            
-
 
             el_li.appendChild(el_disp_title);
             el_li.appendChild(el_disp_summary);
@@ -396,7 +382,7 @@ window.onload = function () {
 
 
 
-    
+
     function stripHTML(html)
     {
        let tmp = document.createElement("div");

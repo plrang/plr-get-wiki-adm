@@ -310,7 +310,8 @@ p {
     margin-bottom: .3rem;
     flex-basis: 4.5rem;
     border: 1px solid #fff;
-    color: #222;
+    color: black;
+    background-color:#ddd;
 }
 
 #plrWiki-switches button:hover {

@@ -10,20 +10,12 @@ WP or standalone site fe.
 /* Config file for: WORDPRESS */
 
 :root {
-    /* not yet used */
-    --main-bg-color: #eee;
-    --main-font-size: 14pt;
-    --main-webfont: 'Barlow Semi Condensed', sans-serif;
-    font-weight: 400 !important;
-    --main-link-color: #28a010;
-    --neutral-link-color: #bbb !important;
-    /* ie. header */
-    --red-point-color: #ff4141;
     /* used */
     --main-panel-width: initial;
     --main-button-font-size: 14pt;
     --main-button-padding: initial;
 }
+
 
 /* PUBLIC POST */
 

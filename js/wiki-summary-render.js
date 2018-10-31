@@ -10,7 +10,7 @@
 
 window.onload = function () {
 
-    const plr_debug = false;
+    const plr_debug = true;
 
     //    #plrWiki-summary-loader
     //    .plrWiki-payload

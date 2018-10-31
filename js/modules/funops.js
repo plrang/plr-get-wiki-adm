@@ -1,4 +1,6 @@
-window.onload = function () {
+
+// CHECK why it doesn't work
+// window.onload = function () {
 
 console.log('FUNOPS module loaded');
 
@@ -7,7 +9,7 @@ console.log('FUNOPS module loaded');
 // 
 // sample: export function loadImage(url) { ...
 
-const plr_debug = false;
+const plr_debug = true;
 
 // HIDE & SHOW HEADER MENU while on mobile or just because
 
@@ -138,4 +140,3 @@ if ( (window.innerWidth<640) && (localStorage.getItem('iconMenuHideToggle') === 
 
   
 
-}

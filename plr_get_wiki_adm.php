@@ -11,46 +11,38 @@ License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
 /*
-Copyright 2018 Plrang Art (email : gws@plrang.com)
+Copyright 2018 Plrang Art (email : gws(AT)plrang.com)
 It's just a working proof of concept, under a continuous development
 Using: https://codex.wordpress.org/Widgets_API
 
-@TODO: CSS variables
+@TODO: use more CSS variables
 @TODO: configurable CSS/theming in the WP widget (started)
 @TODO: different language support
 @TODO: add clearing snippet fields - button
 @TODO: we don't use jQuery - need to check out some calls left in the code (related to the Wordpress not the plugin)
-@FIX: folding the snippet fields
-
+@FIX: folding the snippet input fields
 */
 
 /*
 * Register with hook 'wp_enqueue_scripts', which can be used for front end CSS and JavaScript
 */
 
-
-
-
 include 'plr-get-wiki-functions.php';
-
 
 add_action( 'add_meta_boxes', 'plrWiki_meta_box_add' );
 add_action( 'save_post', 'plrWiki_meta_box_save' );
-
 
 
 function plrWiki_meta_box_add()
 {
     $_screens = array( 'post', 'page', 'image' );
     add_meta_box( 'plrWiki-area-id', 'PLR GET WIKIPEDIA SUMMARY', 'plrWiki_meta_box_echo', $_screens, 'normal', 'high' );
-    
 }
-
 
 
 function plrWiki_meta_box_echo()
 {
-    
+
         // We'll use this nonce field later on when saving.
     if ( function_exists('wp_nonce_field') )         
        wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' ); 
@@ -117,13 +109,8 @@ function plrWiki_meta_box_echo()
                                 <button value="wiktionary.org" id="plrWiki-switch-wiktionary" class="button btn-num-7">DICTIONARY</button>
                             <button value="wikivoyage.org" id="plrWiki-switch-wikivoyage" class="button btn-num-8">VOYAGE</button>                                            
                         <button value="wikiversity.org" id="plrWiki-switch-wikiversity" class="button btn-num-9">UNIVERSITY</button>                                    
-                                
-
-
 
 </section>
-
-
 
 
 <section>
@@ -131,14 +118,11 @@ function plrWiki_meta_box_echo()
 </section>
 
 </article>
-
+  
     
-    
-        <?php    
-
+<?php
 
 }
-
 
 
 function plrWiki_meta_box_save( $post_id )
@@ -165,15 +149,6 @@ function plrWiki_meta_box_save( $post_id )
         update_post_meta( $post_id, 'plrWiki-summary-url-opt', sanitize_text_field($_POST['plrWiki-summary-url'] ) );        
 
 }
-
-
-
-
-
-
-
-
-
 
 
 // ADMIN: plugin style-file
@@ -248,10 +223,6 @@ function plrWiki_displaySummary($the_content) {
     
 return $the_content;
 }
-
-
-
-
 
 
 

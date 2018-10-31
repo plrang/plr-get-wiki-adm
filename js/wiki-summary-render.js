@@ -1,11 +1,11 @@
 
-// Fetch data from WIKIPEDIA to fill the list of SUMMARIES
+// Fetch the data from WIKIPEDIA (API) to fill the list of SUMMARIES
 // Click the summary title to fill the snippet input fields
 // 
 // Snippet is gonna be added to the end of the post content
 // 
 // Depending on the language the URL supplied by Wikipedia may use a weird encoding
-// @FIXIT: At the moment there is user input required in that case
+// @FIXIT: At the moment there is an user input required in that case
 
 
 window.onload = function () {
@@ -13,7 +13,7 @@ window.onload = function () {
     //    #plrWiki-summary-loader
     //    .plrWiki-payload
 
-
+    // @TODO: recheck CORS calls
     // CORS resolving cross domain issue https://stackoverflow.com/questions/23952045/wikipedia-api-cross-origin-requests
     // &origin=* to wikipedia
 
@@ -21,7 +21,7 @@ window.onload = function () {
 
     wiki_api_base = "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&generator=search&prop=info|extracts&inprop=url&exintro&explaintext&exsentences=2&gsrsearch=";
     
-
+    
     // Main configuration object
 
     let configVal = { 
@@ -231,7 +231,7 @@ window.onload = function () {
 
 
 
-
+    
 
 
 
@@ -240,7 +240,7 @@ window.onload = function () {
     const fetchSummaries = () => {
 
         configVal.configUpdate();
-        queryTerm = document.querySelector('#plrWiki-query-term').value;
+        queryTerm = stripHTML(document.querySelector('#plrWiki-query-term').value);
         payload.innerText = "Fetching...";    
 
         console.log(wiki_api_base + queryTerm);
@@ -266,152 +266,8 @@ window.onload = function () {
 
     };
 
-    
-
-    /*
-    // FETCH & FILL for WIKI API 1
-
-
-
-
-    const fillPayloadArea = (wikiJSON) => {
-
-        //payload.innerText = wikiJSON[1];
-
-        // while(dataItems.pop()); // clear - may not work if an element is like false?
-        dataItems.length = 0;
-     
-        let textFormed = "";
-
-        JSONitemsCount = Object.keys( wikiJSON ).length ;
-
-        itemsCount = wikiJSON[1].length;
-        
-        
-        
-        for (var j = 0; j < itemsCount; j++) {
-
-                dataSet = new Object();
-                dataSet = { title:wikiJSON[1][j], summary:wikiJSON[2][j], url:wikiJSON[3][j] }
-                dataItems.push(dataSet);
-
-                }
-            
-        let el_span;
-        let fragment;
-
-        fragment = document.createDocumentFragment();
-        payload.innerText = "";    
-
-        if (dataItems.length == 0) {
-            
-            el_span = document.createElement('span');
-            el_span.innerText = "Can't find a thing, try a different phrase";
-            el_span.className = "plrWiki-err";
-
-            fragment.appendChild(el_span);
-            payload.appendChild(fragment);
-            return false;
-        }
-            
-        //console.log(dataItems);
-        
-        let el_ul = document.createElement('ul');
-
-        for (var i = 0; i < dataItems.length; i++) {
-
-            let el_li = document.createElement('li');
-            
-            
-            let el_disp_title = document.createElement('div');
-            let el_disp_summary = document.createElement('span');
-            let el_disp_url = document.createElement('a');
-
-            
-            el_disp_title.className = "plrwiki-item-title" + " plr-sum-num-" + i;
-            el_disp_summary.className = "plrwiki-item-summary";
-            el_disp_url.className = "plrwiki-item-url";
-
-
-
-            el_disp_title.innerText = dataItems[i].title;
-
-            // clean up data strings from the unnecessary parts
-            // like: (; Polish pronunciation: [ˈwɔmʐa], Yiddish: Lomzhe) 
-            
-            dataItems[i].summary = dataItems[i].summary.replace(/\(.*pronunciation:.*?\)/i, ""); // remove pronunciation
-            dataItems[i].summary = dataItems[i].summary.replace(/\(.*:.*?\)/i, "");  // remove original name spelling
-            dataItems[i].summary = dataItems[i].summary.replace(/\[.*?[^\w]*?.*?\]/i, "");  // remove other weird characters in [], outside of the a-zA-Z-0-9
-                                                                                            // TODO: not sure if it's actually 100% correct
-
-            dataItems[i].summary = dataItems[i].summary.replace(/\(.*?listen.*?\)/i, "");
-                                                                                            
-            
-            el_disp_summary.innerText = dataItems[i].summary;
-         
-
-            el_disp_url.innerText = dataItems[i].url;
-
-            // TODO: check / fix url acquisition or interpretation of the international characters fetched from Wikipedia
-
-
-            el_disp_url.setAttribute('href', dataItems[i].url);
-            el_disp_url.setAttribute('target', '_blank');
-            
-
-            
-
-
-            el_li.appendChild(el_disp_title);
-            el_li.appendChild(el_disp_summary);
-            el_li.appendChild(el_disp_url);
-            
-            el_ul.appendChild(el_li);
-
-        }
-
-        
-        fragment.appendChild(el_ul);
-        payload.appendChild(fragment);
-
-    };
-
-
-
-    const fetchSummaries = () => {
-
-        queryTerm = document.querySelector('#plrWiki-query-term').value;
-
-        payload.innerText = "Fetching...";    
-
-        fetch(wiki_api_base + queryTerm,
-            {
-                method: 'GET',
-                mode: "cors",
-                headers: {
-                    'Accept': 'application/json'
-                }
-
-            })
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (wikiJSON) {
-                // console.log(JSON.stringify(myJson));
-                fillPayloadArea(wikiJSON);
-
-
-            });
-
-    };
-
-
-    */
 
     btnFetch.addEventListener('click', fetchSummaries, false);
-
-
-
 
 
 
@@ -537,6 +393,16 @@ window.onload = function () {
             }
         };
     })();
+
+
+
+    
+    function stripHTML(html)
+    {
+       let tmp = document.createElement("div");
+       tmp.innerHTML = html;
+       return tmp.textContent || tmp.innerText || "";
+    }
 
 
 

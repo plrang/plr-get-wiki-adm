@@ -1,5 +1,4 @@
 /* Get Wiki - Get This Wikipedia Summary */
-
 /* Plrang Art 2018 */
 
 /* Variables 
@@ -261,7 +260,7 @@ p {
 }
 
 #plrWiki-summary-loader .plrwiki-item-title::after {
-    content: 'Kliknij tytuł by wybrać ten opis';
+    content: 'Click the tittle to choose this summary';
     display: none;
     width: auto;
     position: absolute;

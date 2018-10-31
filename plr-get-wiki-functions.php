@@ -1,5 +1,4 @@
 <?php
-
 /* BOILERPLATES & LEFTOVERS AHEAD */
 
 // if (( $pagenow == 'admin.php') ) // && ($href_url_a == 'page=symbiostock-xtra/syxtra-admin-menu.php_SLAM')

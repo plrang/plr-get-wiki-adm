@@ -1,3 +1,4 @@
+window.onload = function () {
 
 console.log('FUNOPS module loaded');
 
@@ -6,9 +7,7 @@ console.log('FUNOPS module loaded');
 // 
 // sample: export function loadImage(url) { ...
 
-const _debug = true;
-
-
+const plr_debug = false;
 
 // HIDE & SHOW HEADER MENU while on mobile or just because
 
@@ -38,7 +37,7 @@ let atSelector1 = document.querySelector("#plrWiki-snippet"); // UI element to h
 
 const iconMenuToggle = (cmd) => {
 
-  if (_debug)
+  if (plr_debug)
     {
     console.log('');
     console.log('TOGGLE F');
@@ -51,18 +50,18 @@ const iconMenuToggle = (cmd) => {
   if ( (cmd === undefined)  ) // no argument set - do the auto toggle - otherwise set toggle to cmd value
   {
     
-    if (_debug)
+    if (plr_debug)
       console.log('cmd === undefined, auto mode');  
 
     if (localState === null) {
       iconMenuHideToggle = 1 - iconMenuHideToggle;
-      if (_debug)
+      if (plr_debug)
         console.log('localState = ' + localState + ' toggle to ' + iconMenuHideToggle);
     }
     else {
       iconMenuHideToggle = localState; // at the first run it's set always to 0, so it can be used in checking the initial screen width < 640 below
       iconMenuHideToggle = 1 - iconMenuHideToggle;
-      if (_debug)
+      if (plr_debug)
         console.log('setItem(iconMenuHideToggle auto = ' + iconMenuHideToggle);
     }
     localStorage.setItem('iconMenuHideToggle', iconMenuHideToggle);
@@ -75,12 +74,12 @@ const iconMenuToggle = (cmd) => {
       {
        
         iconMenuHideToggle = localState;  
-        if (_debug)
+        if (plr_debug)
           console.log('state refresh / cmd = ' + cmd + ' >> ' +localState);
       }
       else { // 0, 1
         iconMenuHideToggle = cmd; 
-        if (_debug) 
+        if (plr_debug) 
           console.log('cmd = ' + cmd + ' >> ' + iconMenuHideToggle);  
       }
 
@@ -91,7 +90,7 @@ const iconMenuToggle = (cmd) => {
  
 
  if (iconMenuHideToggle==1) {
-    if (_debug)
+    if (plr_debug)
       console.log('iconDown ' + iconMenuHideToggle);      
     
     atSelector1.style.display ='none'; 
@@ -101,7 +100,7 @@ const iconMenuToggle = (cmd) => {
     }
     else
     {
-    if (_debug)  
+    if (plr_debug)  
       console.log('iconUp ' + iconMenuHideToggle);      
    
     atSelector1.style.display ='block'; 
@@ -119,7 +118,7 @@ const iconMenuToggle = (cmd) => {
 atSelector.addEventListener('click', ()=> { 
 
   iconMenuToggle();
-  if (_debug)
+  if (plr_debug)
     console.log('event click iconMenuToggle()');    
   
 });
@@ -128,7 +127,7 @@ atSelector.addEventListener('click', ()=> {
 
 if ( (window.innerWidth<640) && (localStorage.getItem('iconMenuHideToggle') === null))
   {
-    if (_debug)
+    if (plr_debug)
       {console.log('start -> window.innerWidth < 640');
       console.log('localStorage.getItem(iconMenuHideToggle) = ' + localStorage.getItem('iconMenuHideToggle'));}
 
@@ -139,3 +138,4 @@ if ( (window.innerWidth<640) && (localStorage.getItem('iconMenuHideToggle') === 
 
   
 
+}

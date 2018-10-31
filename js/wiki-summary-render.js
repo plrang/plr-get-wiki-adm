@@ -10,6 +10,8 @@
 
 window.onload = function () {
 
+    const plr_debug = false;
+
     //    #plrWiki-summary-loader
     //    .plrWiki-payload
 
@@ -89,6 +91,7 @@ window.onload = function () {
 
         JSONitemsCount = Object.keys( wikiJSON_2 ).length ;
         
+        if (plr_debug)
         console.log(JSONitemsCount);
 
         if (JSONitemsCount <= 1) {
@@ -112,6 +115,7 @@ window.onload = function () {
 
         //itemsCount = wikiJSON.length;
         
+        if (plr_debug)
         console.log( JSONitemsCount);
         itemsCount = JSONitemsCount;
 
@@ -229,6 +233,7 @@ window.onload = function () {
         queryTerm = stripHTML(document.querySelector('#plrWiki-query-term').value);
         payload.innerText = "Fetching...";    
 
+        if (plr_debug)
         console.log(wiki_api_base + queryTerm);
 
         fetch(wiki_api_base + queryTerm,
@@ -241,10 +246,12 @@ window.onload = function () {
 
             })
             .then(function (response) {
+                if (plr_debug)
                 console.log('RESPONSE...');
                 return response.json();
             })
             .then(function (wikiJSON) {
+                if (plr_debug)
                 console.log('RESPONSE 2...');
                 //console.log(JSON.stringify(myJson));
                 fillPayloadArea(wikiJSON);

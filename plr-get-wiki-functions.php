@@ -23,14 +23,16 @@ function plrWiki_myfunction() {
 
             //  $my_css_ver = date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'style.css' ));
 
-     $js_vers  = date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'js/wiki-summary-render.js' ));
+
+    $js_vers  = date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'js/wiki-summary-render.js' ));
     
-    // Main Wikipedia fetch/renderer
+     // Main Wikipedia fetch/renderer
     wp_register_script ( 'plr-wiki-area-render' , plugins_url('/js/wiki-summary-render.js', __FILE__) , false, $js_vers, true ); 
     // wp_localize_script( 'plr-wiki-area-render', 'plrAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));  
     wp_enqueue_script ( 'plr-wiki-area-render', plugins_url('/js/wiki-summary-render.js', __FILE__) , false, $js_vers, true  ); // no deps, ver, add in the footer
     }
     
+
     $js_vers  = date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'js/modules/funops.js' ));
     
     // Additional JS functions

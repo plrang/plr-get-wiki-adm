@@ -17,7 +17,7 @@ Using: https://codex.wordpress.org/Widgets_API
 
 @TODO: use more CSS variables
 @TODO: configurable CSS/theming in the WP widget (started)
-@TODO: different language support
+@TODO: different language support / check https://codex.wordpress.org/Function_Reference/wp_localize_script
 @TODO: add clearing snippet fields - button
 @TODO: check/display if the snippet is already used in another post
 @TODO: add autoupdate
@@ -118,12 +118,9 @@ function plrWiki_meta_box_echo()
 </section>
 
 </article>
-  
     
 <?php
-
 }
-
 
 function plrWiki_meta_box_save( $post_id )
 {

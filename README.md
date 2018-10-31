@@ -10,3 +10,5 @@ To install just put the [plr-get-wiki-adm] folder inside the Wordpress Plugins f
 Autoupdate is not yet enabled.
 
 This is the one of many fixes needed so:  Use it at your own risk. No warranties of any kind.
+
+![Plugin screenshot](https://github.com/plrang/plr-get-wiki-adm/blob/master/img/wikipedia-wordpress-plugin-free-code-plrang.jpg)

@@ -68,7 +68,7 @@ window.onload = function () {
     // let wikiJSON;
 
     // 0 - query 
-    // 1 - fount titles
+    // 1 - found titles
     // 2 - summaries
     // 3 - links
 
@@ -117,11 +117,11 @@ window.onload = function () {
         
         if (plr_debug)
         console.log( JSONitemsCount);
+
         itemsCount = JSONitemsCount;
 
 
         if (itemsCount == 0) {
-            
             el_span = document.createElement('span');
             el_span.innerText = "Can't find a thing, try a different phrase";
             el_span.className = "plrWiki-err";
@@ -220,12 +220,8 @@ window.onload = function () {
 
 
 
-
-    
-
-
-
     // FETCH for WIKI API 2
+    // we can't use their REST because it's so F primitive
     
     const fetchSummaries = () => {
 
@@ -293,8 +289,6 @@ window.onload = function () {
 
     btnLangSelect.addEventListener('change', langSelect, false);
     
-
-
 
 
 

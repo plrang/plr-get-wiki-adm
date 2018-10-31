@@ -16,10 +16,10 @@ It's just a working proof of concept, under a continuous development
 Using: https://codex.wordpress.org/Widgets_API
 
 @TODO: use more CSS variables
-@TODO: configurable CSS/theming in the WP widget (started)
+@TODO: configurable CSS/theming in the WP admin panel (started)
 @TODO: different language support / check https://codex.wordpress.org/Function_Reference/wp_localize_script
 @TODO: add clearing snippet fields - button
-@TODO: check/display if the snippet is already used in another post
+@TODO: check & inform that the snippet is already used by another post
 @TODO: add autoupdate
 */
 

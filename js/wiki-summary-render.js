@@ -382,8 +382,6 @@ window.onload = function () {
     })();
 
 
-
-
     function stripHTML(html)
     {
        let tmp = document.createElement("div");

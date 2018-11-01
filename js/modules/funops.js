@@ -9,7 +9,7 @@ console.log('FUNOPS module loaded');
 // 
 // sample: export function loadImage(url) { ...
 
-const plr_debug = true;
+const plr_debug = false;
 
 // HIDE & SHOW HEADER MENU while on mobile or just because
 

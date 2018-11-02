@@ -5,7 +5,7 @@ Plugin URI: https://plrang.com/projects/
 Description: Wordpress plugin allowing to fetch/choose/store Wikipedia's article summary into the post. Using that weird W API
 Author: Plrang
 Author URI: https://plrang.com/
-Version: 1.0.0
+Version: 1.0.1
 License: GNU General Public License v2.0 or later
 License URI: http://www.opensource.org/licenses/gpl-license.php
 */
@@ -28,7 +28,7 @@ Using: https://codex.wordpress.org/Widgets_API
 */
 
 // For autoupdate
-define('PLR_GETWIKIADM_VER', '1.0.0');  
+define('PLR_GETWIKIADM_VER', '1.0.1');  
 
 include 'plr-get-wiki-functions.php';
 
@@ -231,17 +231,17 @@ if(is_admin())
     { 
     // include 'symbiostock-xtra-admin.php';
 
-    add_action('init', 'plr_upd_check');  
+    add_action('init', 'plr_getwiki_upd_check');  
     $PLR_upd = NULL;
-    function plr_upd_check()  
+    function plr_getwiki_upd_check()  
     {
         global $PLR_upd;
         require_once ('plr_autoupd.php');  
         //include ('wp_autoupdate.php');
         $plr_plugin_current_version = PLR_GETWIKIADM_VER;  
-        $plr_plugin_remote_path = 'http://rang.pl/plr-plugins/plr-get-wiki-adm-upd/update.php';  
+        $plr_plugin_remote_path = 'https://plrang.com/plr-plugins/plr-get-wiki-adm-upd/update.php';  
         $plr_plugin_slug = plugin_basename(__FILE__);  
-        $PLR_upd = new plr_auto_update ($plr_plugin_current_version, $plr_plugin_remote_path, $plr_plugin_slug);  
+        $PLR_upd = new plr_getwiki_auto_update ($plr_plugin_current_version, $plr_plugin_remote_path, $plr_plugin_slug);  
     
     }  
  }

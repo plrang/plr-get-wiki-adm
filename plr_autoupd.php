@@ -3,8 +3,10 @@
 // by wptuts - fixed by Plrang
 //
 
+//@TODO: could this class be checked for existence in other plr plugins?
+// it exists already in SYXTRA
 
-class plr_auto_update
+class plr_getwiki_auto_update
 {
 /**
 * The plugin current version
@@ -12,19 +14,19 @@ class plr_auto_update
 */
     public $current_version;
 
-    /**
+/**
 * The plugin remote update path
 * @var string
 */
     public $update_path;
 
-    /**
+/**
 * Plugin Slug (plugin_directory/plugin_file.php)
 * @var string
 */
     public $plugin_slug;
 
-    /**
+/**
 * Plugin name (plugin_file)
 * @var string
 */
@@ -78,7 +80,7 @@ class plr_auto_update
         return $transient;
     }
 
-    /**
+/**
 * Add our self-hosted description to the filter
 *
 * @param boolean $false
@@ -95,7 +97,7 @@ class plr_auto_update
         return false;
     }
 
-    /**
+/**
 * Return the remote version
 * @return string $remote_version
 */
@@ -111,7 +113,7 @@ class plr_auto_update
         return false;
     }
 
-    /**
+/**
 * Get information about the remote version
 * @return bool|object
 */

@@ -27,9 +27,6 @@ Using: https://codex.wordpress.org/Widgets_API
 * Register with hook 'wp_enqueue_scripts', which can be used for front end CSS and JavaScript
 */
 
-// For autoupdate
-define('PLR_GETWIKIADM_VER', '1.0.0');  
-
 include 'plr-get-wiki-functions.php';
 
 add_action( 'add_meta_boxes', 'plrWiki_meta_box_add' );
@@ -227,29 +224,6 @@ return $the_content;
 
 
 
-if(is_admin())
-    { 
-    // include 'symbiostock-xtra-admin.php';
-
-    add_action('init', 'plr_upd_check');  
-    $PLR_upd = NULL;
-    function plr_upd_check()  
-    {
-        global $PLR_upd;
-        require_once ('plr_autoupd.php');  
-        //include ('wp_autoupdate.php');
-        $plr_plugin_current_version = PLR_GETWIKIADM_VER;  
-        $plr_plugin_remote_path = 'http://rang.pl/plr-plugins/plr-get-wiki-adm-upd/update.php';  
-        $plr_plugin_slug = plugin_basename(__FILE__);  
-        $PLR_upd = new plr_auto_update ($plr_plugin_current_version, $plr_plugin_remote_path, $plr_plugin_slug);  
-    
-    }  
- }
-
- 
-
-
-
 
 if ( !class_exists( 'PLR_get_wiki' ))
 {
@@ -322,8 +296,6 @@ function plrWiki_shortcode ( $atts )
 
    return $_html;
 }
-
-
 
 
 ?>

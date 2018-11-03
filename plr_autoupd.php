@@ -1,9 +1,9 @@
 <?php
 // File imported from SYXTRA plugin by Plrang
-// by wptuts - fixed by Plrang
+// By wptuts - fixed by Plrang
 //
 
-//@TODO: could this class be checked for existence in other plr plugins?
+// @TODO: could this class be checked for existence in other plr plugins?
 // it exists already in SYXTRA
 
 class plr_getwiki_auto_update
@@ -68,6 +68,7 @@ class plr_getwiki_auto_update
         // Get the remote version
         $remote_version = $this->getRemote_version();
         $_version_diff = version_compare($this->current_version, $remote_version);
+        
         // If a newer version is available, add the update
         if( !$_version_diff ) return $transient;     // equal?
         if( $$_version_diff == 1 ) return $transient; // lower?
@@ -139,6 +140,5 @@ class plr_getwiki_auto_update
         return false;
     }
 }
-
 
 ?>

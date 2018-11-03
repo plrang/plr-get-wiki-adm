@@ -15,12 +15,12 @@ Copyright 2018 Plrang Art (email : gws(AT)plrang.com)
 It's just a working proof of concept, under a continuous development
 Using: https://codex.wordpress.org/Widgets_API
 
+@TODO: change the name to: PLR GET WIKIPEDIA SUMMARY
 @TODO: use more CSS variables
 @TODO: configurable CSS/theming in the WP admin panel (started)
 @TODO: different language support / check https://codex.wordpress.org/Function_Reference/wp_localize_script
 @TODO: add clearing snippet fields - button
 @TODO: check & inform that the snippet is already used by another post
-@TODO: add autoupdate
 */
 
 /*
@@ -29,6 +29,7 @@ Using: https://codex.wordpress.org/Widgets_API
 
 // For autoupdate
 define('PLR_GETWIKIADM_VER', '1.0.1');  
+
 
 include 'plr-get-wiki-functions.php';
 
@@ -225,8 +226,6 @@ return $the_content;
 }
 
 
-
-
 if(is_admin())
     { 
     // include 'symbiostock-xtra-admin.php';
@@ -322,8 +321,5 @@ function plrWiki_shortcode ( $atts )
 
    return $_html;
 }
-
-
-
 
 ?>

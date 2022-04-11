@@ -2,7 +2,7 @@
 /*
 Plugin Name: Get Wiki - Get This Wikipedia Summary
 Plugin URI: https://plrang.com/projects/
-Description: Wordpress plugin allowing to fetch/choose/store Wikipedia's article summary into the post. Using that weird W API
+Description: Wordpress plugin to fetch/choose/store Wikipedia's article summary and inject it into a post. Using that weird W API
 Author: Plrang
 Author URI: https://plrang.com/
 Version: 1.0.1
@@ -11,7 +11,7 @@ License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
 /*
-Copyright 2018 Plrang Art (email : gws(AT)plrang.com)
+Copyright 2018 Plrang 
 It's just a working proof of concept, under a continuous development
 Using: https://codex.wordpress.org/Widgets_API
 
@@ -29,7 +29,6 @@ Using: https://codex.wordpress.org/Widgets_API
 
 // For autoupdate
 define('PLR_GETWIKIADM_VER', '1.0.1');  
-
 
 include 'plr-get-wiki-functions.php';
 

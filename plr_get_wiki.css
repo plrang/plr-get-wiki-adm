@@ -1,9 +1,7 @@
 /* Get Wiki - Get This Wikipedia Summary */
-/* Plrang Art 2018 */
+/* Plrang 2018 */
 
-/* Variables 
-for customizing styles in
-different sites
+/* Variables for customizing styles in different sites
 WP or standalone site fe.
 */
 
@@ -260,11 +258,9 @@ p {
     opacity: .9;
     top: 20%;
     right: 0;
-    /*  border-radius: 2px; */
     color: #fff;
     padding: 5pt .5rem;
     line-height: 7pt;
-    /*  box-shadow: 0 0 4px 1px #66000033; */
     font-size: 10pt;
     font-weight: normal;
     margin: 0;

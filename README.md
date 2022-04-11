@@ -1,14 +1,10 @@
 Wordpress Wikipedia API client plugin
 
-Basic article summary fetch for inserting it into a Wordpress post.
+This "article summary fetch" is a work in progress, in the early stages of development. The code is not optimized or well-organized, and there are many boilerplates left for further development. Please note that depending on the language, Wikipedia URLs may use unusual encoding, requiring manual input to adjust the URL temporarily.
+As such, use the plugin at your own risk, with no warranties of any kind.
 
-This is a work in progress, early yet working stage.  There are many leftovers from my other sources and the code is not optimized nor organized/formatted. There are many boilerplates left ready for further development.
+To install, simply place the [plr-get-wiki-adm] folder inside the WordPress Plugins folder or clone it. Autoupdate is enabled, and the plugin package is hosted at https://plrang.com/plr-plugins/plr-get-wiki-adm-upd/plr-get-wiki-adm.zip. Although the plugin could be hosted on Github, doing so would force the file name to change in many places due to the branch suffix, which is not currently a priority.
 
-Depending on the language the URLs supplied by Wikipedia may use some weird encoding. There is an user input required in that case to change the URL part by hand (temporary). This is the one of many fixes needed so:  Use it at your own risk. No warranties of any kind.
-
-To install just put the [plr-get-wiki-adm] folder inside the Wordpress Plugins folder.
-Autoupdate is enabled. The plugin package is hosted under: https://plrang.com/plr-plugins/plr-get-wiki-adm-upd/plr-get-wiki-adm.zip
-
-It could be hosted on Github, but GH adds the branch suffix to the file name, which would force me to change that name in many places. [At the moment] it's not an issue I want to cover. 
+Note that this plugin is not yet optimized and should be used with caution.
 
 ![Plugin screenshot](https://github.com/plrang/plr-get-wiki-adm/blob/master/img/wikipedia-wordpress-plugin-free-code-plrang.jpg)
